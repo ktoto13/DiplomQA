@@ -15,6 +15,8 @@ import androidx.test.espresso.ViewInteraction;
 
 import org.junit.Assert;
 
+import java.util.Objects;
+
 import io.qameta.allure.kotlin.Allure;
 import io.qameta.allure.kotlin.Step;
 import okhttp3.OkHttpClient;
@@ -24,7 +26,7 @@ import ru.iteco.fmhandroid.R;
 
 public class AboutPage {
 
-    private ViewInteraction versionText = onView(allOf(withId(R.id.about_version_title_text_view)));
+    private final ViewInteraction versionText = onView(allOf(withId(R.id.about_version_title_text_view)));
 
     @Step("Проверяем существование страницы")
     public void isPageExists(String url) {
@@ -38,8 +40,8 @@ public class AboutPage {
             int statusCode = response.code();
             assertEquals(200, statusCode);
         } catch (Exception e) {
-            Log.d(TAG, e.getMessage());
-            Assert.assertTrue(false);
+            Log.d(TAG, Objects.requireNonNull(e.getMessage()));
+            Assert.fail();
         } finally {
             Espresso.pressBack();
         }
