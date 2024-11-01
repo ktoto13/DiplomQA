@@ -42,6 +42,7 @@ captures/
 *.nar
 *.ear
 *.zip
+!allure-results.zip
 *.tar.gz
 *.rar
 
